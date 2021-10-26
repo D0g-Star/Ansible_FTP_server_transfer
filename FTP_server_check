@@ -1,5 +1,11 @@
 
 ---
+ hosts: 10.250.135.7
+  gather_facts: True
+  gather_subset: interfaces
+  module_defaults:
+    arista.eos.eos_facts:
+      gather_network_resources: interfaces
 - name: Get-URL Download the Protected File
   hosts: 10.250.135.9
   tasks:
