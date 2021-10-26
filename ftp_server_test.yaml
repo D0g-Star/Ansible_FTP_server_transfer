@@ -1,0 +1,25 @@
+
+---
+- name : Get Facts
+  hosts: 10.250.135.7
+  gather_facts: True
+  gather_subset: interfaces
+  module_defaults:
+    arista.eos.eos_facts:
+      gather_network_resources: interfaces
+- name: Get-URL Download the Protected File
+  hosts: 10.250.135.9
+  tasks:
+
+    - name: Access the FTP URL and download the file
+      get_url:
+        url: ftp://10.250.135.9/home/choward/Documents/FTPStorage/test.txt
+        dest: /tmp/test.txt
+
+    - name: Display the File contents
+      shell: >
+         cat /tmp/test.txt
+      register: shellout
+
+    - name: "INFO: Display the File Contents"
+      debug: var=shellout.stdout_lines
