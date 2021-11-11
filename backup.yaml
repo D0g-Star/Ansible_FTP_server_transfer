@@ -19,7 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: SWITCHES
+- hosts: 10.251.154.202
   tasks:
    - name: Backup NEXUS with cli_command
      cli_command:
