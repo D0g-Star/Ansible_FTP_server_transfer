@@ -36,9 +36,6 @@
 - hosts: 10.251.154.202
 
   tasks:
-   - name: Backup Nexus 5000
-  
-  tasks:
    - name: Backup NEXUS with cli_command
      cli_command:
        command: show run | be ver
@@ -47,5 +44,5 @@
    - name: Save output to ~/network-programmability/backups/
      copy:
        content: "{{config.stdout}}"
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
