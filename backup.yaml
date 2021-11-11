@@ -19,7 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: SWITCHES
+- hosts: 10.251.154.202
 
   tasks:
 
@@ -33,7 +33,7 @@
        content: "{{config.stdout[0]}}"
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
 
-- hosts: SWITCHES
+- hosts: 10.251.154.202
 
   vars:
     command_list:
@@ -65,7 +65,7 @@
        src: template.j2
        dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}-{{hostvars.localhost.DTG}}-showoutput.txt"
 
-- hosts: SWITCHES
+- hosts: 10.251.154.202
 
   tasks:
    - name: Backup Catalyst Switch
