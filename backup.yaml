@@ -36,12 +36,16 @@
 - hosts: 10.251.154.202
 
   tasks:
-   - name: Backup Catalyst Switch
+   - name: Backup Nexus 5000
+  
+  tasks:
+   - name: Backup NEXUS with cli_command
+     cli_command:
+       command: show run | be ver
+     register: config 
 
-     ios_config:
-       backup: yes
-       backup_options:
-         filename: "{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-         dir_path: /home/roger/network-programmability/backups/{{hostvars.localhost.DTG}}
-
+   - name: Save output to ~/network-programmability/backups/
+     copy:
+       content: "{{config.stdout}}"
+       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt
 
