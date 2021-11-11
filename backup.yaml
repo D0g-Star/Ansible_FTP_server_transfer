@@ -19,22 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: 10.251.154.202
-
-  tasks:
-
-   - name: Backup
-     ios_command:
-       commands: show run
-     register: config
-
-   - name: Save output to ~/network-programmability/backups/
-     copy:
-       content: "{{config.stdout[0]}}"
-       dest: "~/network-programmability/backups/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
-
-- hosts: 10.251.154.202
-
+- hosts: SWITCHES
   tasks:
    - name: Backup NEXUS with cli_command
      cli_command:
