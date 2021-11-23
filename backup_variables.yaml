@@ -26,8 +26,8 @@
       sw_password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
   tasks:
    - name: Login into NEXUS
-     login: sw_username
-     password: sw_password
+     ansible_user: sw_username
+     ansible_password: sw_password
 
    - name: Backup NEXUS with cli_command
      cli_command:
