@@ -21,9 +21,11 @@
 
 - hosts: 10.251.154.202
   vars:
-    tower_username: '{{ lookup("env", "TOWER_USERNAME") }}'
-    tower_password: '{{ lookup("env", "TOWER_PASSWORD") }}'
+    network:
+      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
   tasks:
+    var: network
    - name: Backup NEXUS with cli_command
      cli_command:
        command: show run | be ver
