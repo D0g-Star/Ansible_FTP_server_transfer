@@ -1,4 +1,7 @@
- hosts: localhost
+---
+## Playbook to get system time and append it to backup files
+
+- hosts: localhost
 
   tasks:
    - name: Get ansible date/time facts
@@ -16,11 +19,12 @@
       state: directory
   run_once: true
 
-hosts: network
-  gather_facts: no
-  connection: network_cli
+- hosts: SWITCHES
+  vars:
+    network:
+      sw_username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+      sw_password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
   tasks:
-    - include_role:
-        name: network-backup
-      vars:
-        network_backup_repository: 'git@github.com:repo/backups.git'
+    -name: Tesst show veriosn for NXOS
+    cisco.nxos.nxos_command:
+     commands: show version
