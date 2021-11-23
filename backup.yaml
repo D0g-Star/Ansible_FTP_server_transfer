@@ -22,11 +22,12 @@
 - hosts: 10.251.154.202
   vars:
     network:
-      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
-      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
+      sw_username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+      sw_password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
   tasks:
-    var: network
    - name: Backup NEXUS with cli_command
+     login: sw_username
+     password: sw_password
      cli_command:
        command: show run | be ver
      register: config 
