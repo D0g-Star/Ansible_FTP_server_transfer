@@ -20,6 +20,9 @@
   run_once: true
 
 - hosts: 10.251.154.202
+  vars:
+    tower_username: '{{ lookup("env", "TOWER_USERNAME") }}'
+    tower_password: '{{ lookup("env", "TOWER_PASSWORD") }}'
   tasks:
    - name: Backup NEXUS with cli_command
      cli_command:
