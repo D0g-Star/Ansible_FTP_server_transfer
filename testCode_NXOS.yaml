@@ -19,7 +19,7 @@
       state: directory
   run_once: true
 
-- hosts: 10.251.154.202
+- hosts: 
   vars:
     network:
       sw_username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
